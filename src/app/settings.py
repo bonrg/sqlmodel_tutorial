@@ -19,9 +19,9 @@ secret_settings = SecretSettings(
 
 
 class Settings(BaseSettings):
-    server_host: str = '192.168.65.134'
+    server_host: str = '0.0.0.0'
     server_port: int = 8000
-    database_url: str = f'postgresql://{secret_settings.postgres_user}:{secret_settings.postgres_password}' \
+    database_url: str = f'postgresql+asyncpg://{secret_settings.postgres_user}:{secret_settings.postgres_password}' \
                         f'@{server_host}:{secret_settings.postgres_port}/{secret_settings.postgres_db}'
 
 
