@@ -1,0 +1,20 @@
+#  docker-compose --env-file ./src/.envs/.env -f deploy/docker-compose.yml up -d
+
+version: "3"
+
+services:
+
+  sqlmodel-db:
+    container_name: sqlmodel-db
+    image: postgres
+    env_file: ../src/.envs/.env
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    volumes:
+    - /docker_volumes/sqlmodel/pgdata:/var/lib/postgresql/data
+    - /etc/localtime:/etc/localtime:ro
+    ports:
+    - "5432:5432"

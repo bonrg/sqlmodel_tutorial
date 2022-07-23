@@ -1,11 +1,11 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from sqlmodel import Field, SQLModel, Relationship
 
 if TYPE_CHECKING:
     from .team import Team
     
-    
+
 class HeroBase(SQLModel):
     name: str = Field(index=True)
     secret_name: str
@@ -17,7 +17,7 @@ class HeroBase(SQLModel):
 class Hero(HeroBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
 
-    team: Team | None = Relationship(back_populates="heroes")
+    team: Optional["Team"] = Relationship(back_populates="heroes")
 
 
 class HeroRead(HeroBase):
