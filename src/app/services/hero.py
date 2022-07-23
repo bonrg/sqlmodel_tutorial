@@ -1,7 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import (
     Depends,
-    status,
     HTTPException
 
 )
@@ -43,3 +42,9 @@ class HeroService:
         await self.session.commit()
         await self.session.refresh(db_hero)
         return db_hero
+
+    async def delete(self, hero_id: int) -> dict:
+        hero = await self.get(hero_id=hero_id)
+        await self.session.delete(hero)
+        await self.session.commit()
+        return {'ok': True}
