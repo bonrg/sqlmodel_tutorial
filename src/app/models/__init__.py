@@ -3,7 +3,8 @@ from .hero import (
     HeroBase,
     HeroRead,
     HeroCreate,
-    HeroUpdate
+    HeroUpdate,
+    HeroReadWithTeam
 )
 
 from .team import (
@@ -11,5 +12,6 @@ from .team import (
     TeamBase,
     TeamRead,
     TeamCreate,
-    TeamUpdate
+    TeamUpdate,
+    TeamReadWithHeroes
 )
