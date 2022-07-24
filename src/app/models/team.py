@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
-    from .hero import Hero, HeroRead
+    from .hero import Hero
 
 
 class TeamBase(SQLModel):
@@ -32,4 +32,5 @@ class TeamUpdate(SQLModel):
 
 
 class TeamReadWithHeroes(TeamRead):
-    heroes: list["HeroRead"] = []
+    from .hero import HeroRead
+    heroes: list[HeroRead] = []
